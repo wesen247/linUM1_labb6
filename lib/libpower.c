@@ -6,10 +6,50 @@
 
 float calc_power_r(float volt, float resistance)
 {
-	return 0;
+	if (volt && resistance)
+	{
+		//printf("%.6f\n", volt*resistance);
+		return volt*resistance;
+	}
+	else if (!volt)
+	{
+		printf("Volt can't be null, try again.");
+		return 0;
+	}
+	else if (!resistance)
+	{
+		printf("Resistance can't be null, try again.");
+		return 0;
+	}
+	else
+	{
+		printf("Something went wrong, try again.");
+		return 0;
+	}
 }
 
 float calc_power_i(float volt, float current)
 {
-	return 0;
+	if (volt && resistance)
+	{
+		//printf("%.6f\n", volt*volt/resistance);
+		return volt*volt/resistance;
+	}
+	else if (!volt)
+	{
+		printf("Volt can't be null, try again.");
+		return 0;
+	}
+	else if (!resistance)
+	{
+		printf("Resistance can't be null, try again.");
+		return 0;
+	}
+	else
+	{
+		printf("Something went wrong, try again.");
+		return 0;
+	}
 }
+
+
