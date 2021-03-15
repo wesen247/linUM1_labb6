@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "libpower.h"
-#include "libresistance.h"
+//#include "libpower.h"
+//#include "libresistance.h"
 
 int main()
 {
@@ -40,8 +40,6 @@ int main()
 	resistance_test = calc_resistance(3, "S", &resistors);
 	printf("%s\n", "Expected result of 'calc_resistance' using 'S' is '125.5'");
 	
-	float resistance_test;
-	float resistors[] = {30.0, 25.5, 70.0};
 	resistance_test = calc_resistance(3, "P", &resistors);
 	printf("%s\n\n", "Expected result of 'calc_resistance' 'P' is '~11.5169'");
 	
