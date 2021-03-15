@@ -1,5 +1,5 @@
 CC = gcc
-LIBFLAG = -L. -Wl,-rpath,. -g
+LIBFLAG = -L. -lpower -lresistance -Wl,-rpath,. -g
 CFLAGS = -g -Wall -Wextra
 
 all:			electrotest

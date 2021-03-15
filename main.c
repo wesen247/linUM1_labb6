@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-//#include "libpower.h"
-//#include "libresistance.h"
+#include "lib/libpower.h"
+#include "lib/libresistance.h"
 
 int main()
 {
