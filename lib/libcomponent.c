@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "lib/libcomponent.h"
+#include "libcomponent.h"
 
 
         // orig_resistance ersätts med tre seriekopplade resistorer

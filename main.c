@@ -5,9 +5,15 @@
 
 int main()
 {
-	float resistance_test;
+	float resistance, volt;
 	int nbr_resistors, resistors_count;
 	char type[]={0};
+	
+	printf("Enter volt: ");
+	scanf("%f", &volt);
+	
+	printf("Serial 'S' or Paralel 'P' ?: ");
+	scanf("%s", &type);
 	
 	printf("Enter number of resistors: ");
 	scanf("%d", &nbr_resistors);
@@ -20,24 +26,17 @@ int main()
 		resistors_count -= 1;
 	}
 	
-	printf("Serial (S) or Paralel (P) ?: ");
-	scanf("%s", &type);
+	resistance = calc_resistance(nbr_resistors, type[0], &resistors);
+	printf("%s\n", "Replacement resistance: ");
+	printf("%0.1f\n\n", resistance);
 	
-	resistance_test = calc_resistance(nbr_resistors, type[0], &resistors);
-	printf("%s\n", "Replacement resistor for given resistors results in: ");
-	printf("%0.6f\n\n", resistance_test);
 	
-	float power_test_r, power_test_i, power_test_volt, power_test_resistance, power_test_expected;
-	printf("Enter volt: ");
-	scanf("%f", &power_test_volt);
-	printf("Enter resistance: ");
-	scanf("%f", &power_test_resistance);
+	float effect;
+	effect = calc_power_r(volt, resistance);
+	printf("Effect (calc_power_r): \n%0.2f W\n", effect);
 	
-	power_test_r = calc_power_r(power_test_volt, power_test_resistance);
-	printf("Calc_power_r: %0.6f\n", power_test_r);
-	
-	power_test_i = calc_power_i(power_test_volt, power_test_resistance);
-	printf("Calc_power_i: %0.6f\n", power_test_i);
+	effect = calc_power_i(volt, (volt/resistance));
+	printf("Effect (calc_power_i): \n%0.2f W\n", effect);
 	
 	return 0;
 }

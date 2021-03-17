@@ -8,7 +8,7 @@ float calc_power_r(float volt, float resistance)
 {
 	if (volt && resistance)
 	{
-		return volt*resistance;
+		return volt*volt/resistance;
 	}
 	else if (!volt)
 	{
@@ -31,7 +31,7 @@ float calc_power_i(float volt, float current)
 {
 	if (volt && current)
 	{
-		return volt*volt/current;
+		return volt*current;
 	}
 	else if (!volt)
 	{
@@ -46,7 +46,7 @@ float calc_power_i(float volt, float current)
 	else
 	{
 		printf("Something went wrong, try again.");
-		return 0.0;
+		return 0;
 	}
 }
 

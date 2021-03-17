@@ -4,7 +4,7 @@ CFLAGS = -g -Wall -Wextra
 
 all:			electrotest
 
-electrotest:		main.c libpower.so libresistance.so 
+electrotest:		main.c libpower.so libresistance.so libcomponent.so
 			$(CC) $(CFLAGS) -o electrotest main.c $(LIBFLAG)
 
 #electrolib:		libpower.so libresistance.so 
@@ -18,9 +18,9 @@ libresistance.so:	lib/libresistance.c lib/libresistance.h
 			$(CC) $(CFLAGS) -c -fPIC lib/libresistance.c
 			$(CC) $(CFLAGS) -shared -fPIC -o libresistance.so libresistance.o
 
-#libcomponent.so:	lib/libcomponent.c lib/libcomponent.h
-#			$(CC) $(CFLAGS) -c -fPIC lib/libcomponent.c
-#			$(CC) $(CFLAGS) -shared -fPIC -o libcomponent.so libcomponent.o
+libcomponent.so:	lib/libcomponent.c lib/libcomponent.h
+			$(CC) $(CFLAGS) -c -fPIC lib/libcomponent.c
+			$(CC) $(CFLAGS) -shared -fPIC -o libcomponent.so libcomponent.o
 			
 clean:
 			rm *.o electrotest *.so
