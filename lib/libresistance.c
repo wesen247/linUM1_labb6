@@ -9,15 +9,15 @@ float calc_resistance(int count, char conn, float *array){
 	float sum = 0.0;
 	if(count && conn && array){
 		if(conn == 'P'){
-			while(conn > 0){
-				conn -= 1;
-				sum += (1/array[conn]);
+			while(count > 0){
+				count -= 1;
+				sum += (1/array[count]);
 			}
 			return (1/sum);
 		} else if(conn == 'S') {
-			while(conn > 0) {
-				conn -= 1;
-				sum += array[conn];
+			while(count > 0) {
+				count -= 1;
+				sum += array[count];
 			}
 			return sum;
 		} else {
