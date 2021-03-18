@@ -1,14 +1,13 @@
 CC = gcc
-LIBFLAG = -L. -lpower -lresistance -Wl,-rpath,. -g
+LIBFLAG = -L. -lpower -lresistance -lcomponent -Wl,-rpath,. -g
 CFLAGS = -g -Wall -Wextra
+OBJECTS_Global = /usr/lib/libresistance.so /usr/lib/libpower.so /usr/lib/libcomponent.so
+
 
 all:			electrotest
 
 electrotest:		main.c libpower.so libresistance.so libcomponent.so
-			$(CC) $(CFLAGS) -o electrotest main.c $(LIBFLAG)
-
-#electrolib:		libpower.so libresistance.so 
-#libcomponent.so
+			$(CC) $(CFLAGS) -o electrotest main.c $(LIBFLAG) 
 
 libpower.so:		lib/libpower.c lib/libpower.h
 			$(CC) $(CFLAGS) -c -fPIC lib/libpower.c
@@ -25,8 +24,16 @@ libcomponent.so:	lib/libcomponent.c lib/libcomponent.h
 clean:
 			rm *.o electrotest *.so
 
-install:
-			sudo cp electrotest /usr/bin
+install:		
+			sudo install electrotest /usr/bin/electrotest
+			sudo install libresistance.so /usr/lib
+			sudo install libpower.so /usr/lib
+			sudo install libcomponent.so /usr/lib
+			
+			
 
 uninstall:
-			sudo rm -i electrotest /usr/bin/electrotest
+			sudo rm -f /usr/bin/electrotest
+			sudo rm -f /usr/lib/libresistance.so
+			sudo rm -f /usr/lib/libpower.so
+			sudo rm -f /usr/lib/libcomponent.so

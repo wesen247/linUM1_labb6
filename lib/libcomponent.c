@@ -2,81 +2,34 @@
 
 #include "libcomponent.h"
 
-
-        // orig_resistance ersätts med tre seriekopplade resistorer
-
 int e_resistance(float orig_resistance, float *res_array)
 {
-   int i,count=0,e=0;
-   float e_one=0,e_two=0,e_three=0;
-   float res_two=0,res_three=0;
-   float res_one=orig_resistance;
+    const float e12[29] = {1, 10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82, 100, 
+        120, 150, 180, 220, 270, 330, 390, 470, 560, 680, 820, 1000,
+        1200, 1500, 1800};
 
+    int count = 0;
+    int i = 0;
+    int j = 0;
+    float temp = orig_resistance;
 
-   // e12 serien
-   float e12[] = {1,10,12,15,18,22,27,33,39,47,56,68,82};
+// serching on e12-series and finding the best value
+    while(i>=0&&count<3){
+        j = i;
 
+        for(i=28; temp-e12[i]<0 && i>=0;i--);
 
-    for(i=0;e_one<res_one;i++)                  //resistans för resistor ett
-          e_one=e12[i];
-          i-=4;
-          e_one=e12[i];
-          if(e_one>=1)
-          {
-          res_one=e_one;
-          res_array[0]=e_one;
-          res_two=orig_resistance-res_one;
-          }
-          else
-          {
-          res_array[0]=0;
-          res_two=orig_resistance;
-          }
-
-	  for(i=0;(e_two<res_two)&(res_two>=1);i++)      //resistans för resistor två
-	  e_two=e12[i];
-          i-=2;
-          e_two=e12[i];
-          if(e_two>=1)
-          {
-          res_two=e_two;
-            if(!res_array[0])
-                res_array[0]=res_two;
-            else
-             res_array[1]=e_two;
-          res_three=orig_resistance-res_one-res_two;
-          }
-          else
-          {
-          res_array[1]=0;
-          res_three=res_two;
-          }
-
-
-
-	  for(i=0;(e_three<res_three)&(res_three>=1);i++)     //resistans för resistor tre
-        e_three=e12[i];
-          if(e_three>=1)
-            {
-            res_three=e_three;
-             if(!res_array[0])
-               res_array[0]=res_three;
-             else if(!res_array[1])
-               res_array[1]=res_three;
-             else
-               res_array[2]= res_three;
-           }
-          else
-            res_array[2]=0;
-
-   for(i=0;i<3;i++)        //antal resistorer som behövdes för att ersätta orig_resistance
-      {
-      e=res_array[i];
-          if(e>=1)
+        if(i>=0)
+        {
+            temp = temp-e12[i];
+        // safe the value to the array
+            *res_array=e12[i];
+            res_array++;
             count++;
-      }
+        }
 
+    }
 
- return count;
+    return count;
 }
 
